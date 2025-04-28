@@ -42,7 +42,8 @@ By fine-tuning the BERT model using the **Hugging Face Trainer API**, we develop
 📌 **Performance:** Achieved **high accuracy** in detecting toxic comments
 
 ---
-
+![Sessions](S1.png)
+![Sessions](S2.png)
 ## ⚡ How to Use?
 1️⃣ **Run the Streamlit App**
    ```bash
