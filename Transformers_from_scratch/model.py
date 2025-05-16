@@ -65,7 +65,7 @@ class PositionalEncoding(nn.Module):
 
     
     def forward(self,x):
-        x= x + (self.pe[:,x.shape[1],:]).requires_grad_(False) # We specifically telling our model- It is not Trainable parameter . DO not train it
+        x= x + (self.pe[:,:x.shape[1],:]).requires_grad_(False) # We specifically telling our model- It is not Trainable parameter . DO not train it
         return self.dropout(x) # Helps to regularize the overall model training.
     
 
@@ -234,13 +234,13 @@ class Transformer(nn.Module):
         self.tgt_pos=tgt_pos
         self.projection_layer=projection_layer
     
-    def encoder(self,src,src_mask):
+    def encode(self,src,src_mask):
          # (batch, seq_len, d_model)
          src=self.src_embed(src)
          src=self.src_pos(src)
          return self.encoder(src,src_mask)
     
-    def decoder(self,encoder_output:torch.Tensor,src_mask:torch.Tensor,tgt:torch.Tensor,tgt_mask:torch.Tensor):
+    def decode(self,encoder_output:torch.Tensor,src_mask:torch.Tensor,tgt:torch.Tensor,tgt_mask:torch.Tensor):
           # (batch, seq_len, d_model)
           tgt=self.tgt_embed(tgt)
           tgt=self.tgt_pos(tgt)
